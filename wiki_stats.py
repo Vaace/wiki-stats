@@ -47,25 +47,25 @@ class WikiGraph:
         print('Graph is loaded')
 
     def get_number_of_links_from(self, _id):
-        pass
+        return len(self._links[self._offset[_id]:self._offset[_id+1])
 
     def get_links_from(self, _id):
-        pass
+        return self._links[self._offset[_id]:self._offset[_id+1]]
 
     def get_id(self, title):
-        pass
+        return self._titles.index(title)
 
     def get_number_of_pages(self):
-        pass
+        return len(self._titles)
 
     def is_redirect(self, _id):
-        pass
+        return self._redirect[_id]
 
     def get_title(self, _id):
-        pass
+        retirn self._titles[_id]
 
     def get_page_size(self, _id):
-        pass
+        return self._sizes[_id]
 
 
 def hist(fname, data, bins, xlabel, ylabel, title, facecolor='green', alpha=0.5, transparent=True, **kwargs):
