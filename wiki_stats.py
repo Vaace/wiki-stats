@@ -3,15 +3,22 @@
 import os
 import sys
 import math
-
 import array
-
 import statistics
 
 from matplotlib import rc
 rc('font', family='Droid Sans', weight='normal', size=14)
 
 import matplotlib.pyplot as plt
+
+def analyze_graph(graph):
+    redir_to = [0 for i in range(graph.get_number_of_pages())]
+    for i in range(graph.get_number_of_pages()):
+        for elements in graph.get_links_from(i):
+            if graph.is_redirect() == 1:
+                redir_to[elements] += 1
+    #FIXME
+    pass            
 
 
 class WikiGraph:
@@ -85,5 +92,6 @@ if __name__ == '__main__':
     else:
         print('Файл с графом не найден')
         sys.exit(-1)
+    analyze_graph(wg)    
 
     # TODO: статистика и гистограммы
