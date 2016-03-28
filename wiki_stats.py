@@ -17,23 +17,34 @@ import matplotlib.pyplot as plt
 class WikiGraph:
 
     def load_from_file(self, filename):
-        print('Загружаю граф из файла: ' + filename)
+        print('Loading graph from file: ' + filename)
 
         with open(filename) as f:
-            # TODO: прочитать из файла
-            sl = f.readline().split()
-            n = sl[0]
-            _nlinks = s[1]
-            
+                      
+            (n, _nlinks) = (map(int, f.readline().split()))
+            steps = 475739
+                        
             self._titles = []
             self._sizes = array.array('L', [0]*n)
             self._links = array.array('L', [0]*_nlinks)
             self._redirect = array.array('B', [0]*n)
             self._offset = array.array('L', [0]*(n+1))
 
-            # TODO: прочитать граф из файла
-
-        print('Граф загружен')
+            num_links = 0
+            for i in range(n):
+                self._titles.append(f.readline().rstrip())
+                (s, r, links) = (map(int, f.readline().split()))
+                self._sizes[i] = s
+                self._redirect[i] = r
+                
+                for j in range(num_links, num_links + links):
+                    self._links[j] = int(str(f.readline()))
+                num_links += links
+                self._offset[i + 1] = self._offset[i] + links
+                if i % steps == 0:
+                    print('#', end = ' ')
+            print('Done..')
+        print('Graph is loaded')
 
     def get_number_of_links_from(self, _id):
         pass
